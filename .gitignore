@@ -1,0 +1,10 @@
+config.py
+constants.py
+settings.py
+google_bigquery_credentials.json
+
+repos/*
+archive/*
+*.old
+*.pyc
+*settings.py

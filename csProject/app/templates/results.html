@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Analysis{% endblock %}
+
+{% block styles %}
+{{super()}}
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<center><h2>Code Quality Analysis</h2></center>
+	<br>
+
+		<center>
+			<div class="card-deck">
+
+				<div class="card mb-4 border-secondary mb-3">
+					<h5 class="card-header">Code Size</h5>
+					{% if data['code_size_data'] %}
+						<div class="card-body">
+							<p class="card-text"><b>Number of Files: </b>{{ data['code_size_data']['files'] }}</p>
+							<p class="card-text"><b>Average Lines of Code: </b>{{ data['code_size_data']['code_lines'] }}</p>
+							<p class="card-text"><b>Average Comment Lines: </b>{{ data['code_size_data']['comment_lines'] }}</p>
+						</div>
+					{% else %}
+						<br>No data<br><br>
+					{% endif %}
+				</div>
+
+				<div class="card mb-4 border-secondary mb-3">
+					<h5 class="card-header">Classes</h5>
+					{% if data['classes_data'] %}
+						<div class="card-body">
+							<p class="card-text"><b>Total Number of Classes: </b>{{ data['classes_data']['total_classes'] }}</p>
+							<p class="card-text"><b>Average Per File: </b>{{ data['classes_data']['avg_per_file'] }}</p>
+							<p class="card-text"><b>Maximum in Any File: </b>{{ data['classes_data']['single_file_max'][0] }} ({{ data['classes_data']['single_file_max'][1] }})</p>
+						</div>
+					{% else %}
+						<br>No data<br><br>
+					{% endif %}
+				</div>
+
+				<div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+
+				<div class="card mb-4 border-secondary mb-3">
+					<h5 class="card-header">Functions</h5>
+					{% if data['functions_data'] %}
+						<div class="card-body">
+							<p class="card-text"><b>Total Number of Functions: </b>{{ data['functions_data']['total_functions'] }}</p>
+							<p class="card-text"><b>Average Per File: </b>{{ data['functions_data']['avg_per_file'] }}</p>
+							<p class="card-text"><b>Maximum in Any File: </b>{{ data['functions_data']['single_file_max'][0] }} ({{ data['functions_data']['single_file_max'][1] }})</p>
+						</div>
+					{% else %}
+						<br>No data<br><br>
+					{% endif %}
+				</div>
+
+				<div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+
+				<div class="card mb-4 border-secondary mb-3">
+					<h5 class="card-header">Code Climate Analysis</h5>
+					{% if data['cc_data'] %}
+						<div class="card-body">
+							<p class="card-text"><b>Number of issues: </b>{{ data['cc_data']['issues_count'] }}</p>
+							<p class="card-text"><b>Remediation Time: </b>{{ data['cc_data']['issues_remediation'] }}</p>
+							<p class="card-text"><a href="{{ url_for('.quality_issues', repo=request.args.get('repo'), timestamp = request.args.get('timestamp'), id=data['cc_data']['id']) }}">View Issues</a></p>
+						</div>
+					{% else %}
+						<br>No data<br><br>
+					{% endif %}
+				</div>
+
+				<div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+				<div class="w-100 d-none d-lg-block d-xl-block"><!-- wrap every 4 on lg--></div>
+
+				<div class="card mb-4 border-secondary mb-3">
+					<h5 class="card-header">Technical Debt</h5>
+					{% if data['cc_data'] %}
+						<div class="card-body">
+							<p class="card-text"><b>Technical Debt Ratio: </b>{{ data['cc_data']['tech_debt_ratio'] }}</p>
+							<p class="card-text"><b>Remediation Time: </b>{{ data['cc_data']['tech_debt_remediation'] }}</p>
+							<p class="card-text"><b>Implementation Time: </b>{{ data['cc_data']['tech_debt_implementation'] }}</p>
+						</div>
+					{% else %}
+						<br>No data<br><br>
+					{% endif %}
+				</div>
+<!-- 
+				<div class="card mb-4 border-secondary mb-3">
+					<h5 class="card-header">Code Size</h5>
+					{% if data['blah'] %}
+						<div class="card-body">
+							<p class="card-text"><b>Number of Files: </b>{{ data['code_size_data']['files'] }}</p>
+							<p class="card-text"><b>Average Lines of Code: </b>{{ data['code_size_data']['code_lines'] }}</p>
+							<p class="card-text"><b>Average Comment Lines: </b>{{ data['code_size_data']['comment_lines'] }}</p>
+						</div>
+					{% else %}
+						<br>No data<br><br>
+					{% endif %}
+				</div>
+ -->
+				<div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+				<div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+
+			</div>
+		</center>
+
+
+</div>
+{% endblock %}

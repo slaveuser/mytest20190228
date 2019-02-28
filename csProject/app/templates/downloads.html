@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Downloads{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style type="text/css">
+	a.custom-card,
+	a.custom-card:hover {
+		color: inherit;
+	}
+
+	.zoom {
+		z-index: 1;
+		transition: transform .2s; /* Animation */
+	}
+	.zoom:hover {
+		transform: scale(1.1);
+	} 
+</style>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h2>Downloads</h2>
+
+	<center>
+		<div id="progress" class="progress w-25" style="display: none;"><div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuemin="0" aria-valuemax="30" id="progress_bar"></div></div>
+		{% if repos %}
+			<div class="row">
+				{% for repo in repos %}
+					<div class="col-md-3">
+						<a href="/analyse?repo={{ repo }}" onclick="show_progress_bar()" class="custom-card">
+							<div class="card shadow-sm my-3 zoom">
+								<div class="card-body">
+									<h5 class="card-title">{{ repo | get_repo_name }}</h5>
+									<span><i class="fas fa-laptop-code fa-5x"></i></span>
+								</div>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</center>
+
+</div>
+{% endblock %}
