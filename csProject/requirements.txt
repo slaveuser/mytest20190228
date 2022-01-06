@@ -8,7 +8,7 @@ backports.functools-lru-cache==1.5
 billiard==3.3.0.23
 binaryornot==0.4.4
 blinker==1.4
-celery==3.1.25
+celery==5.2.2
 certifi==2018.10.15
 cffi==1.11.5
 chardet==3.0.4
