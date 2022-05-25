@@ -60,7 +60,7 @@ pycount==0.6.18
 pycparser==2.19
 pygit2==0.27.2
 PyGithub==1.43.3
-PyJWT==1.6.4
+PyJWT==2.4.0
 pyOpenSSL==18.0.0
 pytest==4.1.1
 pytest-flask==0.14.0
