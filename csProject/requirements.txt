@@ -1,6 +1,6 @@
 amqp==1.4.9
 anyjson==0.3.3
-arrow==0.13.0
+arrow==0.15.1
 asn1crypto==0.24.0
 atomicwrites==1.2.1
 attrs==18.2.0
